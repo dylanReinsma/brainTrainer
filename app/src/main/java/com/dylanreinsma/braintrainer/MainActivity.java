@@ -102,11 +102,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void timer() {
-        new CountDownTimer(16000, 1000) {
+        new CountDownTimer(31000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
-                timerTextView.setText(( millisUntilFinished / 1000 + "s"));
+                if (millisUntilFinished / 1000 >= 10) {
+                    timerTextView.setText((millisUntilFinished / 1000 + "s"));
+                } else {
+                    timerTextView.setText(("0" + millisUntilFinished / 1000 + "s"));
+                }
             }
 
             @Override
