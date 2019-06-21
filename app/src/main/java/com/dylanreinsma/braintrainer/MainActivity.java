@@ -1,8 +1,10 @@
 package com.dylanreinsma.braintrainer;
 
 import android.os.CountDownTimer;
+import android.support.constraint.ConstraintLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.Layout;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Integer> answers = new ArrayList<Integer>();
     int locationOfAnswer;
     Button playAgainButton;
+    ConstraintLayout gameLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,28 +45,15 @@ public class MainActivity extends AppCompatActivity {
         button3 = findViewById(R.id.button3);
         messageTextView = findViewById(R.id.messageTextView);
         playAgainButton = findViewById(R.id.playAgainButton);
+        gameLayout = findViewById(R.id.gameLayout);
 
-        timerTextView.setVisibility(View.INVISIBLE);
-        sumTextView.setVisibility(View.INVISIBLE);
-        progressTextView.setVisibility(View.INVISIBLE);
-        button0.setVisibility(View.INVISIBLE);
-        button1.setVisibility(View.INVISIBLE);
-        button2.setVisibility(View.INVISIBLE);
-        button3.setVisibility(View.INVISIBLE);
-        messageTextView.setVisibility(View.INVISIBLE);
-        playAgainButton.setVisibility(View.INVISIBLE);
+        gameLayout.setVisibility(View.INVISIBLE);
     }
 
     public void goClick(View view) {
         goButton.setVisibility (View.INVISIBLE);
-        timerTextView.setVisibility(View.VISIBLE);
-        sumTextView.setVisibility(View.VISIBLE);
-        progressTextView.setVisibility(View.VISIBLE);
-        button0.setVisibility(View.VISIBLE);
-        button1.setVisibility(View.VISIBLE);
-        button2.setVisibility(View.VISIBLE);
-        button3.setVisibility(View.VISIBLE);
-        messageTextView.setVisibility(View.VISIBLE);
+        gameLayout.setVisibility(View.VISIBLE);
+        playAgainButton.setVisibility(View.INVISIBLE);
         newQuestion();
         timer();
     }
@@ -73,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             messageTextView.setText("Correct!");
             progress++;
         } else {
-            messageTextView.setText("Wrong!");
+            messageTextView.setText("Wrong :(");
         }
         totalProgress++;
         progressTextView.setText(progress + "/" + totalProgress);
